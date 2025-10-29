@@ -1,0 +1,54 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@section styles{
+    <style>
+        #reader {
+            max-width: 480px
+        }
+    </style>
+}
+<div class="row">
+    <div class="col-md-6">
+        <h5>Quét QR để chấm công</h5>
+        <div id="reader"></div>
+        <div class="mt-2">
+            <button class="btn btn-outline-primary" id="btnIn">Ghi IN</button>
+            <button class="btn btn-outline-secondary" id="btnOut">Ghi OUT</button>
+            <span id="empInfo" class="ms-2 text-muted"></span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <p class="text-muted">QR của mỗi nhân viên chứa **mã số nhân viên (manv)**, ví dụ: <code>EMP:25</code>.</p>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script>
+let currentEmpId = null;
+
+function onScanSuccess(decodedText) {
+  // QR format: "EMP:<id>"
+  if(decodedText.startsWith("EMP:")){
+    currentEmpId = parseInt(decodedText.split(":")[1]);
+    $("#empInfo").text("Đã nhận NV: " + currentEmpId);
+  }
+}
+
+const html5QrCode = new Html5Qrcode("reader");
+Html5Qrcode.getCameras().then(cams=>{
+  if(cams && cams.length){
+    html5QrCode.start(cams[0].id,{fps:10, qrbox:250}, onScanSuccess);
+  }
+});
+
+function hit(type){
+  if(!currentEmpId){ alert("Chưa quét được QR NV"); return; }
+  $.post('@Url.Action("Check")', { empId: currentEmpId, type: type }, res=>{
+    if(res.ok) alert("Đã ghi " + type + " cho NV " + currentEmpId);
+    else alert(res.msg);
+  });
+}
+$("#btnIn").on("click", ()=>hit("IN"));
+$("#btnOut").on("click", ()=>hit("OUT"));
+    </script>
+}

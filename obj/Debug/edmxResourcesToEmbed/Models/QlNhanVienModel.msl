@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ql_nhanvienModelStoreContainer" CdmEntityContainer="ql_nhanvienEntities">
+    <EntitySetMapping Name="chitietluongs">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.chitietluong">
+        <MappingFragment StoreEntitySet="chitietluong">
+          <ScalarProperty Name="maluong" ColumnName="maluong" />
+          <ScalarProperty Name="manv" ColumnName="manv" />
+          <ScalarProperty Name="thang" ColumnName="thang" />
+          <ScalarProperty Name="nam" ColumnName="nam" />
+          <ScalarProperty Name="luongcoban" ColumnName="luongcoban" />
+          <ScalarProperty Name="phucap" ColumnName="phucap" />
+          <ScalarProperty Name="thuong" ColumnName="thuong" />
+          <ScalarProperty Name="phat" ColumnName="phat" />
+          <ScalarProperty Name="tongluong" ColumnName="tongluong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chucvus">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.chucvu">
+        <MappingFragment StoreEntitySet="chucvu">
+          <ScalarProperty Name="machucvu" ColumnName="machucvu" />
+          <ScalarProperty Name="tenchucvu" ColumnName="tenchucvu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="congviecs">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.congviec">
+        <MappingFragment StoreEntitySet="congviec">
+          <ScalarProperty Name="loaicv" ColumnName="loaicv" />
+          <ScalarProperty Name="tiendo" ColumnName="tiendo" />
+          <ScalarProperty Name="macv" ColumnName="macv" />
+          <ScalarProperty Name="malv" ColumnName="malv" />
+          <ScalarProperty Name="tieude" ColumnName="tieude" />
+          <ScalarProperty Name="mota" ColumnName="mota" />
+          <ScalarProperty Name="thoigian_bd" ColumnName="thoigian_bd" />
+          <ScalarProperty Name="thoigian_kt" ColumnName="thoigian_kt" />
+          <ScalarProperty Name="mucdo_uutien" ColumnName="mucdo_uutien" />
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+          <ScalarProperty Name="nguoigiao" ColumnName="nguoigiao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dangnhaps">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.dangnhap">
+        <MappingFragment StoreEntitySet="dangnhap">
+          <ScalarProperty Name="madangnhap" ColumnName="madangnhap" />
+          <ScalarProperty Name="tendangnhap" ColumnName="tendangnhap" />
+          <ScalarProperty Name="matkhauHash" ColumnName="matkhauHash" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="tennguoidung" ColumnName="tennguoidung" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="diachi" ColumnName="diachi" />
+          <ScalarProperty Name="ngaytao" ColumnName="ngaytao" />
+          <ScalarProperty Name="ngaysua" ColumnName="ngaysua" />
+          <ScalarProperty Name="mavt" ColumnName="mavt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="duans">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.duan">
+        <MappingFragment StoreEntitySet="duan">
+          <ScalarProperty Name="mada" ColumnName="mada" />
+          <ScalarProperty Name="tenduan" ColumnName="tenduan" />
+          <ScalarProperty Name="mota" ColumnName="mota" />
+          <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
+          <ScalarProperty Name="ngaydukienhoanthanh" ColumnName="ngaydukienhoanthanh" />
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lichlamviecs">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.lichlamviec">
+        <MappingFragment StoreEntitySet="lichlamviec">
+          <ScalarProperty Name="malv" ColumnName="malv" />
+          <ScalarProperty Name="manv" ColumnName="manv" />
+          <ScalarProperty Name="mada" ColumnName="mada" />
+          <ScalarProperty Name="tieude" ColumnName="tieude" />
+          <ScalarProperty Name="loai" ColumnName="loai" />
+          <ScalarProperty Name="ngaybatdau" ColumnName="ngaybatdau" />
+          <ScalarProperty Name="ngayketthuc" ColumnName="ngayketthuc" />
+          <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="luongcobans">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.luongcoban">
+        <MappingFragment StoreEntitySet="luongcoban">
+          <ScalarProperty Name="mamuc" ColumnName="mamuc" />
+          <ScalarProperty Name="manv" ColumnName="manv" />
+          <ScalarProperty Name="luongcoban1" ColumnName="luongcoban" />
+          <ScalarProperty Name="ngayhieuluc" ColumnName="ngayhieuluc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nhacnhoes">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.nhacnho">
+        <MappingFragment StoreEntitySet="nhacnho">
+          <ScalarProperty Name="manhacnho" ColumnName="manhacnho" />
+          <ScalarProperty Name="macv" ColumnName="macv" />
+          <ScalarProperty Name="thoigiannhac" ColumnName="thoigiannhac" />
+          <ScalarProperty Name="hinhthuc" ColumnName="hinhthuc" />
+          <ScalarProperty Name="isSent" ColumnName="isSent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nhanviens">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.nhanvien">
+        <MappingFragment StoreEntitySet="nhanvien">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="manv" ColumnName="manv" />
+          <ScalarProperty Name="madangnhap" ColumnName="madangnhap" />
+          <ScalarProperty Name="hoten" ColumnName="hoten" />
+          <ScalarProperty Name="ngaysinh" ColumnName="ngaysinh" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+          <ScalarProperty Name="diachi" ColumnName="diachi" />
+          <ScalarProperty Name="ngayvaolam" ColumnName="ngayvaolam" />
+          <ScalarProperty Name="tenchucvu" ColumnName="tenchucvu" />
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhanCongs">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.PhanCong">
+        <MappingFragment StoreEntitySet="PhanCong">
+          <ScalarProperty Name="maphancong" ColumnName="maphancong" />
+          <ScalarProperty Name="macv" ColumnName="macv" />
+          <ScalarProperty Name="manv" ColumnName="manv" />
+          <ScalarProperty Name="ngaygiao" ColumnName="ngaygiao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="quenmks">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.quenmk">
+        <MappingFragment StoreEntitySet="quenmk">
+          <ScalarProperty Name="tokenid" ColumnName="tokenid" />
+          <ScalarProperty Name="madangnhap" ColumnName="madangnhap" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="expirytime" ColumnName="expirytime" />
+          <ScalarProperty Name="isused" ColumnName="isused" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeLogs">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.TimeLog">
+        <MappingFragment StoreEntitySet="TimeLog">
+          <ScalarProperty Name="matimelog" ColumnName="matimelog" />
+          <ScalarProperty Name="manv" ColumnName="manv" />
+          <ScalarProperty Name="macv" ColumnName="macv" />
+          <ScalarProperty Name="batdau" ColumnName="batdau" />
+          <ScalarProperty Name="ketthuc" ColumnName="ketthuc" />
+          <ScalarProperty Name="tongtg" ColumnName="tongtg" />
+          <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vaitroes">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.vaitro">
+        <MappingFragment StoreEntitySet="vaitro">
+          <ScalarProperty Name="mavt" ColumnName="mavt" />
+          <ScalarProperty Name="tenvaitro" ColumnName="tenvaitro" />
+          <ScalarProperty Name="mota" ColumnName="mota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attendances">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.Attendance">
+        <MappingFragment StoreEntitySet="Attendance">
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="CheckTime" ColumnName="CheckTime" />
+          <ScalarProperty Name="CheckType" ColumnName="CheckType" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="AttId" ColumnName="AttId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lichcas">
+      <EntityTypeMapping TypeName="ql_nhanvienModel.lichca">
+        <MappingFragment StoreEntitySet="lichca">
+          <ScalarProperty Name="macv" ColumnName="macv" />
+          <ScalarProperty Name="giokt" ColumnName="giokt" />
+          <ScalarProperty Name="giobd" ColumnName="giobd" />
+          <ScalarProperty Name="ngay" ColumnName="ngay" />
+          <ScalarProperty Name="manv" ColumnName="manv" />
+          <ScalarProperty Name="malichca" ColumnName="malichca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

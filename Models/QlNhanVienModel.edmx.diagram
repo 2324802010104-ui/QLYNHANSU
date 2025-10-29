@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b809cc2d45484bf9868aadde219208da" Name="Diagram1">
+        <EntityTypeShape EntityType="ql_nhanvienModel.chitietluong" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.chucvu" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.congviec" Width="1.5" PointX="7.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.dangnhap" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.duan" Width="1.5" PointX="8.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.lichlamviec" Width="1.5" PointX="10.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.luongcoban" Width="1.5" PointX="7.5" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.nhacnho" Width="1.5" PointX="9.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.nhanvien" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.PhanCong" Width="1.5" PointX="12.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.quenmk" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.TimeLog" Width="1.5" PointX="12.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.vaitro" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__chitietluo__manv__2B0A656D" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__nhanvien__tenchu__0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__congviec__malv__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__congviec__nguoig__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__nhacnho__macv__2FCF1A8A" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__PhanCong__macv__1EA48E88" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__TimeLog__macv__3493CFA7" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__nhanvien__madang__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__quenmk__madangnh__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK_DangNhap_VaiTro" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__lichlamvie__mada__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__lichlamvie__manv__10566F31" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__luongcoban__manv__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__PhanCong__manv__1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__TimeLog__manv__339FAB6E" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.Attendance" Width="1.5" PointX="7.5" PointY="18.875" />
+        <AssociationConnector Association="ql_nhanvienModel.FK__Attendanc__EmpId__3864608B" />
+        <EntityTypeShape EntityType="ql_nhanvienModel.lichca" Width="1.5" PointX="12.75" PointY="9.125" />
+        <AssociationConnector Association="ql_nhanvienModel.FK_lichca_cv" />
+        <AssociationConnector Association="ql_nhanvienModel.FK_lichca_nv" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

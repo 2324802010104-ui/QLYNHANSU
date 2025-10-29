@@ -1,0 +1,26 @@
+﻿@model IEnumerable<QLNS.Models.nhanvien>
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; ViewBag.Title = "Nhân sự"; }
+
+<form class="row mb-3">
+    <div class="col-md-4">
+        <input name="q" class="form-control" placeholder="Tìm tên/điện thoại/email" value="@Request["q"]" />
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-outline-primary">Tìm</button>
+    </div>
+</form>
+
+<div class="row g-3">
+    @foreach (var x in Model)
+    {
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="card-title mb-1">@x.hoten</h6>
+                    <div class="text-muted small">@x.email | @x.sdt</div>
+                    @Html.ActionLink("Xem hồ sơ", "Details", "Employees", new { id = x.manv }, new { @class = "btn btn-sm btn-primary mt-2" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

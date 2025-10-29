@@ -1,0 +1,21 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";
+    var role = Session["role"] as string;
+    var roleName = role ?? "";
+    bool CanCreateEmployee = roleName.Contains("Admin") || roleName.Contains("Quản lý");
+}
+
+<div class="row g-4">
+    <div class="col-md-4">@Html.ActionLink("Lịch làm việc", "Index", "Calendar", null, new { @class = "tile d-block" })</div>
+    <div class="col-md-4">@Html.ActionLink("Công việc", "Index", "Tasks", null, new { @class = "tile d-block" })</div>
+    <div class="col-md-4">@Html.ActionLink("Lương", "Index", "Payroll", null, new { @class = "tile d-block" })</div>
+    <div class="col-md-4">@Html.ActionLink("Chấm công", "Index", "Attendance", null, new { @class = "tile d-block" })</div>
+    <div class="col-md-4">@Html.ActionLink("Nhân sự", "Index", "Employees", null, new { @class = "tile d-block" })</div>
+
+    @* Chỉ hiển thị khi là Admin/Quản lý *@
+    @if (CanCreateEmployee)
+    {
+        <div class="col-md-4">
+            @Html.ActionLink("Đăng ký nhân viên", "Create", "Employees", null, new { @class = "tile d-block text-danger fw-bold" })
+        </div>
+    }
+</div>

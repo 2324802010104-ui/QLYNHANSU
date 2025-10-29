@@ -1,0 +1,57 @@
+﻿@model QLNS.Models.EmployeeRegisterVM
+@{ ViewBag.Title = "Đăng ký nhân viên"; Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h3 class="mb-3">Đăng ký nhân viên</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label>Họ tên</label>
+            @Html.TextBoxFor(m => m.Hoten, new { @class = "form-control", required = "required" })
+        </div>
+        <div class="col-md-3">
+            <label>Ngày sinh</label>
+            @Html.TextBoxFor(m => m.NgaySinh, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            <label>Giới tính</label>
+            @Html.DropDownListFor(m => m.GioiTinh, new SelectList(new[] { "Nam", "Nữ", "Khác" }), "-- Chọn --", new { @class = "form-select" })
+        </div>
+
+        <div class="col-md-6">
+            <label>Email</label>
+            @Html.TextBoxFor(m => m.Email, new { @type = "email", @class = "form-control", required = "required" })
+        </div>
+        <div class="col-md-6">
+            <label>Số ĐT</label>
+            @Html.TextBoxFor(m => m.Sdt, new { @class = "form-control" })
+        </div>
+
+        <div class="col-12">
+            <label>Địa chỉ</label>
+            @Html.TextBoxFor(m => m.Diachi, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-6">
+            <label>Chức vụ</label>
+            @Html.DropDownListFor(m => m.MaChucVu, (SelectList)ViewBag.MaChucVu, "-- Chọn --", new { @class = "form-select" })
+        </div>
+
+        <div class="col-12"><hr /></div>
+
+        <div class="col-md-4">
+            <label>Tên đăng nhập</label>
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", required = "required" })
+        </div>
+        <div class="col-md-4">
+            <label>Mật khẩu</label>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="col-12 mt-3">
+            <button class="btn btn-primary">Tạo nhân viên</button>
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-outline-secondary ms-2" })
+        </div>
+    </div>
+}

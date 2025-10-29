@@ -1,0 +1,45 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@section styles{
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
+    <style>
+        #calendar {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 10px
+        }
+    </style>
+}
+<div class="d-flex justify-content-between mb-3">
+    <h5 class="m-0">Lịch làm việc</h5>
+    <div class="d-flex gap-2">
+        <select id="emp" class="form-select"></select>
+        <button id="btnAll" class="btn btn-outline-secondary">Tất cả</button>
+    </div>
+</div>
+<div id="calendar"></div>
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <script>
+let manv=null;
+function loadEmp(){
+  $.getJSON('@Url.Action("EmployeeOptions")', d=>{
+    $("#emp").html(`<option value="">-- Chọn nhân viên --</option>` + d.map(x=>`<option value="${x.manv}">${x.hoten}</option>`));
+  });
+}
+loadEmp();
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+    initialView: 'dayGridMonth',
+    events: (info, success)=> {
+      $.getJSON('@Url.Action("Events")', { manv: manv }, success);
+    }
+  });
+  calendar.render();
+
+  $("#emp").on("change", function(){ manv=$(this).val()||null; calendar.refetchEvents(); });
+  $("#btnAll").on("click", function(){ manv=null; $("#emp").val(""); calendar.refetchEvents(); });
+});
+    </script>
+}

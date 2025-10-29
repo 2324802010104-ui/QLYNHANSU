@@ -1,0 +1,20 @@
+﻿@model IEnumerable<PayVM>
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<h5>Bảng lương tháng @ViewBag.Thang/@ViewBag.Nam</h5>
+<table class="table table-striped">
+    <thead><tr><th>Mã</th><th>Họ tên</th><th>LCB</th><th>Phụ cấp</th><th>Thưởng</th><th>Phạt</th><th>Tổng</th></tr></thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Manv</td>
+                <td>@x.Hoten</td>
+                <td>@x.LuongCoBan.ToString("n0")</td>
+                <td>@x.PhuCap.ToString("n0")</td>
+                <td>@x.Thuong.ToString("n0")</td>
+                <td>@x.Phat.ToString("n0")</td>
+                <td class="fw-bold">@x.Tong.ToString("n0")</td>
+            </tr>
+}
+    </tbody>
+</table>

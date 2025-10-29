@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ql_nhanvienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="AttId" />
+    </Key>
+    <Property Name="AttId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="CheckType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CheckTime" Type="datetime" Nullable="false" />
+    <Property Name="Note" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="chitietluong">
+    <Key>
+      <PropertyRef Name="maluong" />
+    </Key>
+    <Property Name="maluong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="manv" Type="int" Nullable="false" />
+    <Property Name="thang" Type="int" Nullable="false" />
+    <Property Name="nam" Type="int" Nullable="false" />
+    <Property Name="luongcoban" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="phucap" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="thuong" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="phat" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="tongluong" Type="decimal" Precision="15" Scale="2" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="chucvu">
+    <Key>
+      <PropertyRef Name="machucvu" />
+    </Key>
+    <Property Name="machucvu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenchucvu" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="congviec">
+    <Key>
+      <PropertyRef Name="macv" />
+    </Key>
+    <Property Name="macv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="malv" Type="int" Nullable="false" />
+    <Property Name="tieude" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="mota" Type="text" />
+    <Property Name="thoigian_bd" Type="datetime" Nullable="false" />
+    <Property Name="thoigian_kt" Type="datetime" Nullable="false" />
+    <Property Name="mucdo_uutien" Type="nvarchar" MaxLength="30" />
+    <Property Name="trangthai" Type="nvarchar" MaxLength="30" />
+    <Property Name="nguoigiao" Type="int" />
+    <Property Name="tiendo" Type="tinyint" Nullable="false" />
+    <Property Name="loaicv" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dangnhap">
+    <Key>
+      <PropertyRef Name="madangnhap" />
+    </Key>
+    <Property Name="madangnhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tendangnhap" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="matkhauHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="tennguoidung" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sdt" Type="nvarchar" MaxLength="20" />
+    <Property Name="diachi" Type="nvarchar" MaxLength="255" />
+    <Property Name="ngaytao" Type="datetime" />
+    <Property Name="ngaysua" Type="datetime" />
+    <Property Name="mavt" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="duan">
+    <Key>
+      <PropertyRef Name="mada" />
+    </Key>
+    <Property Name="mada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenduan" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="mota" Type="nvarchar(max)" />
+    <Property Name="ngaybatdau" Type="date" Nullable="false" />
+    <Property Name="ngaydukienhoanthanh" Type="date" />
+    <Property Name="trangthai" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="lichca">
+    <Key>
+      <PropertyRef Name="malichca" />
+    </Key>
+    <Property Name="malichca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="manv" Type="int" Nullable="false" />
+    <Property Name="ngay" Type="date" Nullable="false" />
+    <Property Name="giobd" Type="time" Precision="7" Nullable="false" />
+    <Property Name="giokt" Type="time" Precision="7" Nullable="false" />
+    <Property Name="macv" Type="int" />
+  </EntityType>
+  <EntityType Name="lichlamviec">
+    <Key>
+      <PropertyRef Name="malv" />
+    </Key>
+    <Property Name="malv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="manv" Type="int" />
+    <Property Name="mada" Type="int" />
+    <Property Name="tieude" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="loai" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ngaybatdau" Type="date" Nullable="false" />
+    <Property Name="ngayketthuc" Type="date" Nullable="false" />
+    <Property Name="ghichu" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="luongcoban">
+    <Key>
+      <PropertyRef Name="mamuc" />
+    </Key>
+    <Property Name="mamuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="manv" Type="int" Nullable="false" />
+    <Property Name="luongcoban" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="ngayhieuluc" Type="date" />
+  </EntityType>
+  <EntityType Name="nhacnho">
+    <Key>
+      <PropertyRef Name="manhacnho" />
+    </Key>
+    <Property Name="manhacnho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="macv" Type="int" Nullable="false" />
+    <Property Name="thoigiannhac" Type="datetime" Nullable="false" />
+    <Property Name="hinhthuc" Type="nvarchar" MaxLength="20" />
+    <Property Name="isSent" Type="bit" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="manv" />
+    </Key>
+    <Property Name="manv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="madangnhap" Type="int" Nullable="false" />
+    <Property Name="hoten" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ngaysinh" Type="date" />
+    <Property Name="sdt" Type="nvarchar" MaxLength="20" />
+    <Property Name="gioitinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="diachi" Type="nvarchar" MaxLength="255" />
+    <Property Name="ngayvaolam" Type="date" />
+    <Property Name="tenchucvu" Type="int" Nullable="false" />
+    <Property Name="trangthai" Type="nvarchar" MaxLength="20" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PhanCong">
+    <Key>
+      <PropertyRef Name="maphancong" />
+    </Key>
+    <Property Name="maphancong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="macv" Type="int" Nullable="false" />
+    <Property Name="manv" Type="int" Nullable="false" />
+    <Property Name="ngaygiao" Type="date" />
+  </EntityType>
+  <EntityType Name="quenmk">
+    <Key>
+      <PropertyRef Name="tokenid" />
+    </Key>
+    <Property Name="tokenid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="madangnhap" Type="int" Nullable="false" />
+    <Property Name="token" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="expirytime" Type="datetime" Nullable="false" />
+    <Property Name="isused" Type="bit" />
+  </EntityType>
+  <EntityType Name="TimeLog">
+    <Key>
+      <PropertyRef Name="matimelog" />
+    </Key>
+    <Property Name="matimelog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="manv" Type="int" Nullable="false" />
+    <Property Name="macv" Type="int" Nullable="false" />
+    <Property Name="batdau" Type="datetime" Nullable="false" />
+    <Property Name="ketthuc" Type="datetime" Nullable="false" />
+    <Property Name="tongtg" Type="int" StoreGeneratedPattern="Computed" />
+    <Property Name="ghichu" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="vaitro">
+    <Key>
+      <PropertyRef Name="mavt" />
+    </Key>
+    <Property Name="mavt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenvaitro" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="mota" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__Attendanc__EmpId__3864608B">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="manv" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chitietluo__manv__2B0A656D">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="chitietluong" Type="Self.chitietluong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="manv" />
+      </Principal>
+      <Dependent Role="chitietluong">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__congviec__malv__18EBB532">
+    <End Role="lichlamviec" Type="Self.lichlamviec" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="congviec" Type="Self.congviec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lichlamviec">
+        <PropertyRef Name="malv" />
+      </Principal>
+      <Dependent Role="congviec">
+        <PropertyRef Name="malv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__congviec__nguoig__19DFD96B">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+    <End Role="congviec" Type="Self.congviec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="manv" />
+      </Principal>
+      <Dependent Role="congviec">
+        <PropertyRef Name="nguoigiao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__lichlamvie__mada__114A936A">
+    <End Role="duan" Type="Self.duan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="lichlamviec" Type="Self.lichlamviec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="duan">
+        <PropertyRef Name="mada" />
+      </Principal>
+      <Dependent Role="lichlamviec">
+        <PropertyRef Name="mada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__lichlamvie__manv__10566F31">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="lichlamviec" Type="Self.lichlamviec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="manv" />
+      </Principal>
+      <Dependent Role="lichlamviec">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__luongcoban__manv__245D67DE">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="luongcoban" Type="Self.luongcoban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="manv" />
+      </Principal>
+      <Dependent Role="luongcoban">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__nhacnho__macv__2FCF1A8A">
+    <End Role="congviec" Type="Self.congviec" Multiplicity="1" />
+    <End Role="nhacnho" Type="Self.nhacnho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="congviec">
+        <PropertyRef Name="macv" />
+      </Principal>
+      <Dependent Role="nhacnho">
+        <PropertyRef Name="macv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__nhanvien__madang__09A971A2">
+    <End Role="dangnhap" Type="Self.dangnhap" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dangnhap">
+        <PropertyRef Name="madangnhap" />
+      </Principal>
+      <Dependent Role="nhanvien">
+        <PropertyRef Name="madangnhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__nhanvien__tenchu__0A9D95DB">
+    <End Role="chucvu" Type="Self.chucvu" Multiplicity="1" />
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chucvu">
+        <PropertyRef Name="machucvu" />
+      </Principal>
+      <Dependent Role="nhanvien">
+        <PropertyRef Name="tenchucvu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhanCong__macv__1EA48E88">
+    <End Role="congviec" Type="Self.congviec" Multiplicity="1" />
+    <End Role="PhanCong" Type="Self.PhanCong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="congviec">
+        <PropertyRef Name="macv" />
+      </Principal>
+      <Dependent Role="PhanCong">
+        <PropertyRef Name="macv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhanCong__manv__1F98B2C1">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1" />
+    <End Role="PhanCong" Type="Self.PhanCong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="manv" />
+      </Principal>
+      <Dependent Role="PhanCong">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__quenmk__madangnh__01142BA1">
+    <End Role="dangnhap" Type="Self.dangnhap" Multiplicity="1" />
+    <End Role="quenmk" Type="Self.quenmk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dangnhap">
+        <PropertyRef Name="madangnhap" />
+      </Principal>
+      <Dependent Role="quenmk">
+        <PropertyRef Name="madangnhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TimeLog__macv__3493CFA7">
+    <End Role="congviec" Type="Self.congviec" Multiplicity="1" />
+    <End Role="TimeLog" Type="Self.TimeLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="congviec">
+        <PropertyRef Name="macv" />
+      </Principal>
+      <Dependent Role="TimeLog">
+        <PropertyRef Name="macv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TimeLog__manv__339FAB6E">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1" />
+    <End Role="TimeLog" Type="Self.TimeLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="manv" />
+      </Principal>
+      <Dependent Role="TimeLog">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DangNhap_VaiTro">
+    <End Role="vaitro" Type="Self.vaitro" Multiplicity="1" />
+    <End Role="dangnhap" Type="Self.dangnhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vaitro">
+        <PropertyRef Name="mavt" />
+      </Principal>
+      <Dependent Role="dangnhap">
+        <PropertyRef Name="mavt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_lichca_cv">
+    <End Role="congviec" Type="Self.congviec" Multiplicity="0..1" />
+    <End Role="lichca" Type="Self.lichca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="congviec">
+        <PropertyRef Name="macv" />
+      </Principal>
+      <Dependent Role="lichca">
+        <PropertyRef Name="macv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_lichca_nv">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="lichca" Type="Self.lichca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="manv" />
+      </Principal>
+      <Dependent Role="lichca">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ql_nhanvienModelStoreContainer">
+    <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="chitietluong" EntityType="Self.chitietluong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="chucvu" EntityType="Self.chucvu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="congviec" EntityType="Self.congviec" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dangnhap" EntityType="Self.dangnhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="duan" EntityType="Self.duan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lichca" EntityType="Self.lichca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lichlamviec" EntityType="Self.lichlamviec" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="luongcoban" EntityType="Self.luongcoban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhacnho" EntityType="Self.nhacnho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhanCong" EntityType="Self.PhanCong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="quenmk" EntityType="Self.quenmk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TimeLog" EntityType="Self.TimeLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vaitro" EntityType="Self.vaitro" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Attendanc__EmpId__3864608B" Association="Self.FK__Attendanc__EmpId__3864608B">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chitietluo__manv__2B0A656D" Association="Self.FK__chitietluo__manv__2B0A656D">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="chitietluong" EntitySet="chitietluong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__congviec__malv__18EBB532" Association="Self.FK__congviec__malv__18EBB532">
+      <End Role="lichlamviec" EntitySet="lichlamviec" />
+      <End Role="congviec" EntitySet="congviec" />
+    </AssociationSet>
+    <AssociationSet Name="FK__congviec__nguoig__19DFD96B" Association="Self.FK__congviec__nguoig__19DFD96B">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="congviec" EntitySet="congviec" />
+    </AssociationSet>
+    <AssociationSet Name="FK__lichlamvie__mada__114A936A" Association="Self.FK__lichlamvie__mada__114A936A">
+      <End Role="duan" EntitySet="duan" />
+      <End Role="lichlamviec" EntitySet="lichlamviec" />
+    </AssociationSet>
+    <AssociationSet Name="FK__lichlamvie__manv__10566F31" Association="Self.FK__lichlamvie__manv__10566F31">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="lichlamviec" EntitySet="lichlamviec" />
+    </AssociationSet>
+    <AssociationSet Name="FK__luongcoban__manv__245D67DE" Association="Self.FK__luongcoban__manv__245D67DE">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="luongcoban" EntitySet="luongcoban" />
+    </AssociationSet>
+    <AssociationSet Name="FK__nhacnho__macv__2FCF1A8A" Association="Self.FK__nhacnho__macv__2FCF1A8A">
+      <End Role="congviec" EntitySet="congviec" />
+      <End Role="nhacnho" EntitySet="nhacnho" />
+    </AssociationSet>
+    <AssociationSet Name="FK__nhanvien__madang__09A971A2" Association="Self.FK__nhanvien__madang__09A971A2">
+      <End Role="dangnhap" EntitySet="dangnhap" />
+      <End Role="nhanvien" EntitySet="nhanvien" />
+    </AssociationSet>
+    <AssociationSet Name="FK__nhanvien__tenchu__0A9D95DB" Association="Self.FK__nhanvien__tenchu__0A9D95DB">
+      <End Role="chucvu" EntitySet="chucvu" />
+      <End Role="nhanvien" EntitySet="nhanvien" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhanCong__macv__1EA48E88" Association="Self.FK__PhanCong__macv__1EA48E88">
+      <End Role="congviec" EntitySet="congviec" />
+      <End Role="PhanCong" EntitySet="PhanCong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhanCong__manv__1F98B2C1" Association="Self.FK__PhanCong__manv__1F98B2C1">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="PhanCong" EntitySet="PhanCong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__quenmk__madangnh__01142BA1" Association="Self.FK__quenmk__madangnh__01142BA1">
+      <End Role="dangnhap" EntitySet="dangnhap" />
+      <End Role="quenmk" EntitySet="quenmk" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TimeLog__macv__3493CFA7" Association="Self.FK__TimeLog__macv__3493CFA7">
+      <End Role="congviec" EntitySet="congviec" />
+      <End Role="TimeLog" EntitySet="TimeLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TimeLog__manv__339FAB6E" Association="Self.FK__TimeLog__manv__339FAB6E">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="TimeLog" EntitySet="TimeLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DangNhap_VaiTro" Association="Self.FK_DangNhap_VaiTro">
+      <End Role="vaitro" EntitySet="vaitro" />
+      <End Role="dangnhap" EntitySet="dangnhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_lichca_cv" Association="Self.FK_lichca_cv">
+      <End Role="congviec" EntitySet="congviec" />
+      <End Role="lichca" EntitySet="lichca" />
+    </AssociationSet>
+    <AssociationSet Name="FK_lichca_nv" Association="Self.FK_lichca_nv">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="lichca" EntitySet="lichca" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

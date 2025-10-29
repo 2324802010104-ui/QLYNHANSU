@@ -1,0 +1,245 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var data = (IEnumerable<dynamic>)Model;
+}
+@section styles{
+    <style>
+        .kanban {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 16px
+        }
+
+        .kcol {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 10px;
+            min-height: 60vh
+        }
+
+            .kcol h6 {
+                font-weight: 700;
+                margin: 6px 8px
+            }
+
+        .card-task {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px
+        }
+
+        .badge-pri {
+            font-size: .75rem
+        }
+
+        .muted {
+            font-size: .85rem;
+            color: #6b7280
+        }
+    </style>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="m-0">Bảng công việc</h5>
+    <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#ocCreate">
+        <i class="fa fa-plus"></i> Giao việc
+    </button>
+</div>
+
+<div class="kanban">
+    @{
+        Func<string, IHtmlString> col = st =>
+        {
+            var list = data.Where(x => (string)x.trangthai == st).OrderBy(x => x.thoigian_kt);
+            var html = "<div class='kcol'><h6>" + st + "</h6>";
+            foreach (var t in list)
+            {
+                var han = (t.thoigian_kt as DateTime?)?.ToString("dd/MM") ?? "--";
+                html += "<div class='card-task'>";
+                html += "<div class='fw-semibold'>" + t.tieude + "</div>";
+                html += "<div class='d-flex justify-content-between mt-1'><span class='badge bg-secondary badge-pri'>" + t.mucdo_uutien + "</span>";
+                html += "<small>Hạn: " + han + "</small></div>";
+                html += "<div class='mt-2'><input type='range' min='0' max='100' value='" + t.tiendo + "' data-id='" + t.macv + "' class='form-range form-range-sm updProgress' /></div>";
+                html += "<div class='mt-1 btn-group btn-group-sm'>"
+                     + "<button class='btn btn-outline-secondary chg' data-id='" + t.macv + "' data-st='Chưa làm'>Mới</button>"
+                     + "<button class='btn btn-outline-secondary chg' data-id='" + t.macv + "' data-st='Đang làm'>Đang làm</button>"
+                     + "<button class='btn btn-outline-secondary chg' data-id='" + t.macv + "' data-st='Hoàn thành'>Hoàn thành</button>"
+                     + "</div>";
+                html += "</div>";
+            }
+            html += "</div>";
+            return new HtmlString(html);
+        };
+    }
+    @col("Chưa làm") @col("Đang làm") @col("Hoàn thành") @col("Đã giao")
+</div>
+
+<!-- Offcanvas tạo/giao việc -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="ocCreate" style="width:520px">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Giao việc</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        @Html.AntiForgeryToken()
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-long" type="button">Dài hạn</button></li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-shift" type="button">Chia ca (Part-time)</button></li>
+        </ul>
+
+        <div class="tab-content pt-3">
+            <!-- DÀI HẠN -->
+            <div class="tab-pane fade show active" id="tab-long">
+                <div class="mb-2"><label class="form-label">Tiêu đề</label><input id="cv_title" class="form-control" /></div>
+                <div class="mb-2"><label class="form-label">Mô tả</label><textarea id="cv_desc" class="form-control" rows="3"></textarea></div>
+                <div class="row g-2">
+                    <div class="col"><label>Bắt đầu</label><input id="cv_bd" type="datetime-local" class="form-control" /></div>
+                    <div class="col"><label>Kết thúc</label><input id="cv_kt" type="datetime-local" class="form-control" /></div>
+                </div>
+                <div class="mb-2 mt-2">
+                    <label>Mức độ</label>
+                    <select id="cv_priority" class="form-select">
+                        <option>Thấp</option>
+                        <option selected>Trung bình</option>
+                        <option>Cao</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label>Gắn vào lịch (tuỳ chọn)</label>
+                    <select id="cv_malv" class="form-select"></select>
+                    <div class="muted">Chọn “(Tự tạo lịch)” để hệ thống tự sinh lịch khi giao việc.</div>
+                </div>
+                <div class="mb-2">
+                    <label>Giao cho (giữ Ctrl để chọn nhiều)</label>
+                    <select id="cv_emps" multiple class="form-select"></select>
+                </div>
+                <div id="msgLong" class="alert d-none mt-3"></div>
+                <button id="btnCreateLong" class="btn btn-primary w-100 mt-2">Tạo công việc dài hạn</button>
+            </div>
+
+            <!-- CHIA CA -->
+            <div class="tab-pane fade" id="tab-shift">
+                <div class="mb-2"><label class="form-label">Tiêu đề (tuỳ chọn)</label><input id="ca_title" class="form-control" placeholder="VD: Ca phục vụ tối" /></div>
+                <div class="mb-2"><label class="form-label">Mô tả</label><textarea id="ca_desc" class="form-control" rows="2"></textarea></div>
+
+                <div class="row g-2">
+                    <div class="col"><label>Từ ngày</label><input id="ca_from" type="date" class="form-control" /></div>
+                    <div class="col"><label>Đến ngày</label><input id="ca_to" type="date" class="form-control" /></div>
+                </div>
+                <div class="row g-2 mt-2">
+                    <div class="col"><label>Giờ bắt đầu</label><input id="ca_gbd" type="time" class="form-control" /></div>
+                    <div class="col"><label>Giờ kết thúc</label><input id="ca_gkt" type="time" class="form-control" /></div>
+                </div>
+
+                <div class="mt-2">
+                    <label>Ngày trong tuần (bỏ trống = mọi ngày)</label>
+                    <div class="d-flex flex-wrap gap-2 mt-1">
+                        <label class="form-check"><input class="form-check-input dow" type="checkbox" value="1"> T2</label>
+                        <label class="form-check"><input class="form-check-input dow" type="checkbox" value="2"> T3</label>
+                        <label class="form-check"><input class="form-check-input dow" type="checkbox" value="3"> T4</label>
+                        <label class="form-check"><input class="form-check-input dow" type="checkbox" value="4"> T5</label>
+                        <label class="form-check"><input class="form-check-input dow" type="checkbox" value="5"> T6</label>
+                        <label class="form-check"><input class="form-check-input dow" type="checkbox" value="6"> T7</label>
+                        <label class="form-check"><input class="form-check-input dow" type="checkbox" value="0"> CN</label>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <label>Giao cho (giữ Ctrl để chọn nhiều)</label>
+                    <select id="ca_emps" multiple class="form-select"></select>
+                </div>
+
+                <div id="msgShift" class="alert d-none mt-3"></div>
+                <button id="btnCreateShift" class="btn btn-outline-primary w-100 mt-3">Tạo ca</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+// ---------- helpers ----------
+function showMsg($el, ok, text){
+  $el.removeClass("d-none alert-success alert-danger")
+     .addClass(ok ? "alert alert-success" : "alert alert-danger")
+     .text(text||"");
+  if(ok) setTimeout(()=>location.reload(), 900);
+}
+function token(){ return $('input[name="__RequestVerificationToken"]').val(); }
+
+// ---------- load dropdowns ----------
+function loadOptions(){
+  $.getJSON('@Url.Action("EmployeeOptions")', d=>{
+    const opts = (d||[]).map(x=>`<option value="${x.manv}">${x.hoten}</option>`);
+    $("#cv_emps,#ca_emps").html(opts.join("") || "<option disabled>Chưa có nhân viên</option>");
+  });
+  $.getJSON('@Url.Action("LichOptions")', d=>{
+    const opts = (d||[]).map(x=>`<option value="${x.malv}">${x.tieude}</option>`);
+    $("#cv_malv").html(`<option value="0">(Tự tạo lịch)</option>` + opts.join(""));
+  });
+}
+loadOptions();
+
+// ---------- dài hạn ----------
+$("#btnCreateLong").on("click", function(){
+  const payload = {
+    __RequestVerificationToken: token(),
+    tieude: $("#cv_title").val(),
+    mota: $("#cv_desc").val(),
+    bd: $("#cv_bd").val(),
+    kt: $("#cv_kt").val(),
+    mucdouutien: $("#cv_priority").val(),
+    malv: parseInt($("#cv_malv").val()||"0",10) || 0, // 0 -> auto tạo lịch
+    nhanviens: $("#cv_emps").val() || []
+  };
+  if(!payload.tieude){ showMsg($("#msgLong"), false, "Thiếu tiêu đề."); return; }
+
+  $.post('@Url.Action("CreateTask")', payload)
+   .done(r=> showMsg($("#msgLong"), r.ok, r.msg || (r.ok?"Tạo thành công":"Tạo thất bại")))
+   .fail(()=> showMsg($("#msgLong"), false, "Không gọi được máy chủ"));
+});
+
+// ---------- chia ca ----------
+$("#btnCreateShift").on("click", function(){
+  const payload = {
+    tieude: $("#ca_title").val(),
+    mota: $("#ca_desc").val(),
+    fromDate: $("#ca_from").val(),
+    toDate: $("#ca_to").val(),
+    gioBd: $("#ca_gbd").val(),
+    gioKt: $("#ca_gkt").val(),
+    daysOfWeek: $(".dow:checked").map((i,e)=>$(e).val()).get(),
+    nhanviens: $("#ca_emps").val() || []
+  };
+
+  if(!payload.fromDate || !payload.toDate || !payload.gioBd || !payload.gioKt){
+    showMsg($("#msgShift"), false, "Điền đủ ngày & giờ."); return;
+  }
+  if(payload.nhanviens.length===0){
+    showMsg($("#msgShift"), false, "Chọn ít nhất 1 nhân viên."); return;
+  }
+
+  $.ajax({
+    url: '@Url.Action("CreateShiftTask")',
+    type: 'POST',
+    data: payload,
+    headers: { 'RequestVerificationToken': token() }
+  })
+  .done(r=> showMsg($("#msgShift"), r.ok, r.msg || (r.ok?"Tạo ca thành công":"Tạo ca thất bại")))
+  .fail(()=> showMsg($("#msgShift"), false, "Không gọi được máy chủ"));
+});
+
+// ---------- update trạng thái / tiến độ ----------
+$(document).on("click",".chg", function(){
+  $.post('@Url.Action("UpdateStatus")', { macv: $(this).data("id"), trangthai: $(this).data("st") },
+         ()=>location.reload());
+});
+$(document).on("change",".updProgress", function(){
+  $.post('@Url.Action("UpdateStatus")', { macv: $(this).data("id"), tiendo: $(this).val() });
+});
+    </script>
+}

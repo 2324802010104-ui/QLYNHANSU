@@ -1,0 +1,12 @@
+﻿@model QLNS.Models.nhanvien
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; ViewBag.Title = "Hồ sơ nhân viên"; }
+
+<table class="table">
+    <tr><th>Mã NV</th><td>@Model.manv</td></tr>
+    <tr><th>Họ tên</th><td>@Model.hoten</td></tr>
+    <tr><th>Email</th><td>@Model.email</td></tr>
+    <tr><th>SĐT</th><td>@Model.sdt</td></tr>
+    <tr><th>Địa chỉ</th><td>@Model.diachi</td></tr>
+    <tr><th>Chức vụ</th><td>@Model.chucvu?.tenchucvu</td></tr>
+    <tr><th>Trạng thái</th><td>@Model.trangthai</td></tr>
+</table>
